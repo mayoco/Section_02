@@ -28,6 +28,7 @@ int main(){
 	do {
 		PrintIntro();
 		PlayGame();
+
 	} 
 	while (!BCGame.IsGameEnd()&&AskToPlayAgain());
 	PrintGameEnd();
@@ -37,7 +38,7 @@ int main(){
 
 
 void PrintIntro(){
-	std::cout << "**************************************************************" << std::endl;
+	std::cout << "*************************************************************" << std::endl;
 	std::cout << "	             ------------------------------------------" << std::endl;
 	std::cout << "	 _  A   A   |Hi, Friend! Lets play a word game!        |" << std::endl;
 	std::cout << "	{  (*T.T*)  |Guess a word what I am thinking about,    |" << std::endl;
