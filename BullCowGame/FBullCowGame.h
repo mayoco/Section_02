@@ -33,6 +33,7 @@ public:
 	int32 GetHiddenWordLength() const;
 	bool IsGameWon()const;
 	EGuessStatus CheckGuessValidity(FString) const;
+	bool IsGameEnd() const;
 
 	void Reset();
 	FBullCowCount SubmitValidGuess(FString);
@@ -40,8 +41,11 @@ public:
 private:
 	//see constructor for initialisation
 	int32 MyCurrentTry;
-	FString MyHiddenWord="key";
+	FString MyHiddenWord;
+	int32 level = 0;
 	bool bGameIsWon;
+	FString HiddenWords[7]{ "key","bag","card","herb","sword","dragon","wizard" };//this MUST no duplicate letter
+
 
 	bool IsIsogram(FString) const;
 	bool IsLowercase(FString) const;

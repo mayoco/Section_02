@@ -22,12 +22,8 @@ int32 FBullCowGame::GetMaxTries() const {
 void FBullCowGame::Reset()
 {
 
-	FString record[5]{"card","sword","switch","herb","wizard"};
-	if (bGameIsWon == true) {//change word if win
-		int32 random = rand() % 5;
-		FString HIDDEN_WORD = record[random];//this MUST no duplicate letter
-		MyHiddenWord = HIDDEN_WORD;
-	}
+	FString HIDDEN_WORD = HiddenWords[level];
+	MyHiddenWord = HIDDEN_WORD;
 	MyCurrentTry = 1;
 	bGameIsWon = false;
 
@@ -41,6 +37,13 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 	else if (Guess.length()!=GetHiddenWordLength()) { return EGuessStatus::Wrong_Length; }
 	else { return EGuessStatus::OK; }
 }
+
+bool FBullCowGame::IsGameEnd() const//check if all word has been guessed
+{
+	if (level+1 >= sizeof(HiddenWords))return true;
+	return false;
+}
+
 
 
 //receives a VALID guess, increment turn, and returns count
@@ -60,7 +63,10 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 			}
 		}
 	}
-	if (BullCowCount.Bulls == WordLength)bGameIsWon = true;
+	if (BullCowCount.Bulls == WordLength){ 
+		bGameIsWon = true; 
+		level++; 
+	}
 	return BullCowCount;
 }
 

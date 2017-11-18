@@ -17,6 +17,7 @@ using int32 = int;
 void PrintIntro();
 void PlayGame();
 void PrintGameSummary();
+void PrintGameEnd();
 FText GetValidGuess();
 bool AskToPlayAgain();
 
@@ -28,8 +29,8 @@ int main(){
 		PrintIntro();
 		PlayGame();
 	} 
-	while (AskToPlayAgain());
-
+	while (!BCGame.IsGameEnd()&&AskToPlayAgain());
+	PrintGameEnd();
 	return 0;//exit the application
 }
 
@@ -78,6 +79,13 @@ void PrintGameSummary(){
 		std::cout << "(O A O) -*Better luck next time!*-\n";
 		std::cout << "/>    > -************************-\n";
 	}
+}
+
+void PrintGameEnd()
+{
+	std::cout << " A   A  -*You have guessed all  *-\n";
+	std::cout << "(O v O) -*words.                *-\n";
+	std::cout << "/>    > -*Thank you for playing!*-\n";
 }
 
 //loop continually until the user gives a valid guess
